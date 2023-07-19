@@ -1,7 +1,7 @@
 import wx
 import pyperclip
 
-from util import json_parse_util
+from util import json_parse_util, xml_parse_util
 
 
 class TopUi(wx.Frame):
@@ -135,6 +135,8 @@ class TopUi(wx.Frame):
         # 'SQL工具'
         if 'Json工具' == utilType:
             self.str_after_text.SetValue(json_parse_util.json_parse(before_str))
+        if 'HTML工具' == utilType:
+            self.str_after_text.SetValue(xml_parse_util.xml_parse(before_str))
 
     def compress(self, evt):
         before_str = self.str_before_text.GetValue()
@@ -143,6 +145,8 @@ class TopUi(wx.Frame):
 
         if 'Json工具' == utilType:
             self.str_after_text.SetValue(json_parse_util.json_compress(before_str))
+        if 'HTML工具' == utilType:
+            self.str_after_text.SetValue(xml_parse_util.xml_compress(before_str))
 
     def copy(self, evt):
         pyperclip.copy(self.str_after_text.GetValue())
